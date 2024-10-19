@@ -3,9 +3,8 @@
 session_start();
 
 // Include the database connection
-include __DIR__ . '/../../config/connection.php';
-$database = new Database();
-$conn = $database->getConnection();
+include  '../../config/connection.php';
+
 
 // Check if the user is not logged in
 if (!isset($_SESSION['username'])) {
