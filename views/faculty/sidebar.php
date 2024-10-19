@@ -3,13 +3,12 @@
 session_start();
 
 // Include the database connection
-include __DIR__ . '/../../config/connection.php';
-$database = new Database();
-$conn = $database->getConnection();
+include '../../config/connection.php';
+
 
 // Check if the user is not logged in
 if (!isset($_SESSION['email'])) {
-    header("Location: login");
+    header("Location: login.php");
     exit;
 }
 
@@ -44,7 +43,7 @@ $stmt->close();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Student</title>
+    <title>EyeBook</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../views\public/vendors/feather/feather.css">
     <link rel="stylesheet" href="../views\public/vendors/ti-icons/css/themify-icons.css">

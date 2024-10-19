@@ -1,20 +1,11 @@
 <?php
 session_start();
 
-include  'config/connection.php';
+include  '../../config/connection.php';
 // include  'models/admin.php';
 
 $message = "";
 
-// Initialize database and create table if not exists
-$database = new Database();
-$db = $database->getConnection();
-// $adminModel = new AcapsdminModel($db);
-// $tableCreationMessage = $adminModel->createAdminsTable();
-// $tableCreationMessageUniversities = $adminModel->createUniversitiesTable();
-// $tableCreationMessageCourses = $adminModel->createCoursesTable();
-// $tableCreationMessageSpocs = $adminModel->createSpocsTable();
-// $tableCreationMessageStudents = $adminModel->createStudentsTable();
 
 
 // echo $tableCreationMessage;
@@ -42,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
                 session_regenerate_id(true);
 
                 // Redirect to admin dashboard
-                header("Location: dashboard");
+                header("Location: dashboard.php");
                 exit();
             } else {
                 $message = "Invalid password.";
@@ -125,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     </div>
 </div>
 <div style="bottom:0; background-color: #ffffff; color: #7b09df; text-align: center; padding: 10px 0; font-size: 0.8em;">
-    <p>Developed and maintained by <br> <a href="about.html">KARE OSS Software Development Team</a></p>
+    <p>Developed and maintained by <br> <a href="about.html">Phemesoft</a></p>
 </div>
 <script src="views/public/assets/scripts/core.js"></script>
 <script src="views/public/assets/scripts/script.min.js"></script>

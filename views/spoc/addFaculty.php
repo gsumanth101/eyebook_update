@@ -62,7 +62,12 @@ $conn->close();
                     <div class="card-body">
                         <p class="card-title mb-0" style="font-size:x-large">Add Faculty</p><br>
                         <?php if (isset($message)): ?>
-                            <div class="alert alert-info"><?php echo $message; ?></div>
+                            <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
+                            <script>
+                                setTimeout(function() {
+                                    window.location.href = 'addFaculty.php';
+                                }, 2000); // Redirect after 2 seconds
+                            </script>
                         <?php endif; ?>
                         <form method="POST" action="">
                             <div class="mb-3">

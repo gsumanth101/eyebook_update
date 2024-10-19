@@ -1,7 +1,12 @@
 <?php
+// $servername = "localhost";
+// $username = "eyebook_user";
+// $password = "#**Admin123@**#";
+// $dbname = "eyebook";
+
 $servername = "localhost";
-$username = "eyebook_user";
-$password = "#**Admin123@**#";
+$username = "root";
+$password = "";
 $dbname = "eyebook";
 
 $conn = new mysqli($servername, $username, $password, $dbname);

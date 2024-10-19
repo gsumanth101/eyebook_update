@@ -42,7 +42,7 @@ $stmt->close();
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Student</title>
+    <title>EyeBook</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../../views/public/vendors/feather/feather.css">
     <link rel="stylesheet" href="../../views/public/vendors/ti-icons/css/themify-icons.css">
