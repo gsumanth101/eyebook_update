@@ -67,7 +67,7 @@ CREATE TABLE `courses` (
   `university_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `universities` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]' CHECK (json_valid(`universities`)),
+  `universities` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin CHECK (json_valid(`universities`)),
   `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
