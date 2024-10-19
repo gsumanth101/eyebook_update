@@ -1,35 +1,22 @@
 <?php
 session_start();
 
-include  '../../config/connection.php';
-include  '../../models/admin.php';
+include '../../config/connection.php';
 
 $message = "";
 
-// Initialize database and create table if not exists
-$database = new Database();
-$db = $database->getConnection();
-$adminModel = new AdminModel($db);
-$tableCreationMessage = $adminModel->createAdminsTable();
-$tableCreationMessageUniversities = $adminModel->createUniversitiesTable();
-$tableCreationMessageCourses = $adminModel->createCoursesTable();
-$tableCreationMessageSpocs = $adminModel->createSpocsTable();
-$tableCreationMessageStudents = $adminModel->createStudentsTable();
-$tableCreationMessageStudents = $adminModel->createFacultyTable();
-$tableCreationMessageStudents = $adminModel->createVirtualMeetingsTable();
-$tableCreationMessageStudents = $adminModel->createAttendanceTable();
-
-
-
-// echo $tableCreationMessage;
-
+// Check if the request method is POST and the login form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     if (isset($_POST["username"]) && isset($_POST["password"])) {
         $username = trim($_POST["username"]);
         $password = trim($_POST["password"]);
 
         // Prepare and execute the SQL statement
-        $stmt = $db->prepare("SELECT * FROM admins WHERE BINARY username = ?");
+        $stmt = $conn->prepare("SELECT * FROM admins WHERE BINARY username = ?");
+        if ($stmt === false) {
+            die('Prepare failed: ' . htmlspecialchars($conn->error));
+        }
+
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -54,11 +41,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         } else {
             $message = "No user found with that username.";
         }
+
+        $stmt->close();
     } else {
         $message = "Username and password are required.";
     }
 }
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

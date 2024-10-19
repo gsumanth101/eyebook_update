@@ -1,40 +1,31 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-class Database {
-    private $conn;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
-    public function __construct() {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
+$servername = $_ENV['DB_SERVERNAME'];
+$username = $_ENV['DB_USERNAME'];
+$password = $_ENV['DB_PASSWORD'];
+$dbname = $_ENV['DB_NAME'];
 
-        $servername = $_ENV['DB_SERVERNAME'];
-        $username = $_ENV['DB_USERNAME'];
-        $password = $_ENV['DB_PASSWORD'];
-        $dbname = $_ENV['DB_NAME'];
+$conn = new mysqli($servername, $username, $password);
 
-        $this->conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-        }
+// Create database if it doesn't exist
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) !== TRUE) {
+    die("Error creating database: " . $conn->error);
+}
 
-        $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-        if ($this->conn->query($sql) === TRUE) {
-            // echo "Database created successfully or already exists<br>";
-        } else {
-            // echo "Error creating database: " . $this->conn->error . "<br>";
-        }
+// Select the database
+$conn->select_db($dbname);
 
-        $this->conn->select_db($dbname);
-    }
-
-
-    public function getConnection() {
-        return $this->conn;
-    }
-
-    public function closeConnection() {
-        $this->conn->close();
-    }
+// Function to close the connection
+function closeConnection($conn) {
+    $conn->close();
 }
