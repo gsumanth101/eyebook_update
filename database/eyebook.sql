@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2024 at 02:10 PM
+-- Generation Time: Oct 19, 2024 at 06:56 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,16 +67,19 @@ CREATE TABLE `courses` (
   `university_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `universities` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]' CHECK (json_valid(`universities`))
+  `universities` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT '[]' CHECK (json_valid(`universities`)),
+  `content` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `name`, `description`, `university_id`, `created_at`, `updated_at`, `universities`) VALUES
-(1, 'Deep Learning', 'AIML', NULL, '2024-10-19 04:31:00', '2024-10-19 04:59:42', '[\"1\"]'),
-(2, 'Machine Learning', 'AIML', NULL, '2024-10-19 07:58:13', '2024-10-19 07:58:13', '[]');
+INSERT INTO `courses` (`id`, `name`, `description`, `university_id`, `created_at`, `updated_at`, `universities`, `content`) VALUES
+(1, 'Deep Learning', 'AIML', NULL, '2024-10-19 04:31:00', '2024-10-19 13:57:18', '[\"1\"]', '[{\"unitTitle\":\"IT\",\"materials\":[{\"scormDir\":\"uploads\\/1729341463-IT DATA STRUCTURE\",\"indexPath\":\"uploads/1729341463-IT DATA STRUCTURE/index.html\"}]},{\"unitTitle\":\"IT\",\"materials\":[{\"scormDir\":\"uploads\\/1729341744-IT DATA STRUCTURE\",\"indexPath\":\"uploads\\/1729341744-IT DATA STRUCTURE\\/index.html\"}]}]'),
+(2, 'Machine Learning', 'AIML', NULL, '2024-10-19 07:58:13', '2024-10-19 07:58:13', '[]', NULL),
+(3, 'Predictive Analysis', 'AIML', NULL, '2024-10-19 16:18:31', '2024-10-19 16:18:31', '[]', NULL),
+(4, 'IT', 'AIML', NULL, '2024-10-19 16:19:40', '2024-10-19 16:25:00', '[\"1\"]', '[{\"unitTitle\":\"IT\",\"materials\":[{\"scormDir\":\"uploads\\/1729354938-IT DATA STRUCTURE\",\"indexPath\":\"uploads\\/1729354938-IT DATA STRUCTURE\\/index.html\"}]}]');
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,8 @@ CREATE TABLE `spocs` (
 --
 
 INSERT INTO `spocs` (`id`, `name`, `email`, `phone`, `university_id`, `password`, `reset_password_token`, `reset_password_expires`) VALUES
-(1, 'G. Sumanth', 'gsumanth101@gmail.com', '7075166428', 1, '$2y$10$ac9LxBEn6khR/kUb2AOm4ebgwjLghCDqepqKtaBZi5jWK4ElrWs7C', NULL, NULL);
+(1, 'G. Sumanth', 'gsumanth101@gmail.com', '7075166428', 1, '$2y$10$ac9LxBEn6khR/kUb2AOm4ebgwjLghCDqepqKtaBZi5jWK4ElrWs7C', NULL, NULL),
+(2, 'C Ravi Ram', 'raviram@gmail.com', '9704916727', 4, '$2y$10$Fw1ymCkYBmFJDEk1sl07zOw7MSSxTz6oOtvgT62x1SQIPO50Zt5va', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -181,7 +185,8 @@ CREATE TABLE `universities` (
 --
 
 INSERT INTO `universities` (`id`, `long_name`, `short_name`, `location`, `country`, `created_at`, `updated_at`) VALUES
-(1, 'Kalasalingam Academy of Research and Education', 'KARE', 'Maduari', 'India', '2024-10-18 18:15:41', '2024-10-18 18:15:41');
+(1, 'Kalasalingam Academy of Research and Education', 'KARE', 'Maduari', 'India', '2024-10-18 18:15:41', '2024-10-18 18:15:41'),
+(4, 'Yenepoya University', 'YU', 'Bangalore', 'India', '2024-10-19 16:06:57', '2024-10-19 16:06:57');
 
 -- --------------------------------------------------------
 
@@ -281,7 +286,7 @@ ALTER TABLE `attendance`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `faculty`
@@ -293,7 +298,7 @@ ALTER TABLE `faculty`
 -- AUTO_INCREMENT for table `spocs`
 --
 ALTER TABLE `spocs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -305,7 +310,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `universities`
 --
 ALTER TABLE `universities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `virtual_meetings`
