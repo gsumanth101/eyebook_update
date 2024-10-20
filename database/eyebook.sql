@@ -161,8 +161,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `regd_no`, `name`, `email`, `section`, `stream`, `year`, `dept`, `university_id`, `password`, `created_at`, `updated_at`) VALUES
-(1, '9921004235', 'Gorla Buchayyagari Sumanth', '9921004235@klu.ac.in', 'S2', 'AIML', 4, 'CSE', 1, '$2y$10$XkrsxeXyDTi0RVWrPYkDfu59vtBthdIBh28LH5.H6lw/PaxjKgY1C', '2024-10-19 02:32:09', '2024-10-19 02:32:09');
+INSERT INTO `students` (`id`, `regd_no`, `name`, `email`, `section`, `stream`, `year`, `dept`, `university_id`, `password`) VALUES
+(1, '9921004235', 'Gorla Buchayyagari Sumanth', '9921004235@klu.ac.in', 'S2', 'AIML', 4, 'CSE', 1, '$2y$10$XkrsxeXyDTi0RVWrPYkDfu59vtBthdIBh28LH5.H6lw/PaxjKgY1C', '2024-10-19 02:32:09', );
 
 -- --------------------------------------------------------
 
