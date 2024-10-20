@@ -17,6 +17,11 @@ if ($result->num_rows > 0) {
     die("Course not found.");
 }
 
+
+
+// Decode JSON data
+$course_data = json_decode($course['content'], true);
+
 // Close the DB connection
 $conn->close();
 ?>
@@ -40,53 +45,41 @@ $conn->close();
                         <table class="table table-hover">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <!-- <th scope="col">#</th> -->
                                     <th scope="col">Course Attribute</th>
                                     <th scope="col">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Course Name</td>
-                                    <td><?php echo htmlspecialchars($course['name']); ?></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Course Code</td>
-                                    <td><?php echo htmlspecialchars($course['code']); ?></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Credits</td>
-                                    <td><?php echo htmlspecialchars($course['credits']); ?></td>
-                                </tr>
+                                <?php
+                                // $counter = 1;
+                                foreach ($course_data as $unit) {
+                                    echo "<tr>";
+                                    // echo "<td>" . $counter++ . "</td>";
+                                    echo "<td>Unit Title</td>";
+                                    echo "<td>" . htmlspecialchars($unit['unitTitle']) . "</td>";
+                                    echo "</tr>";
+                                    foreach ($unit['materials'] as $material) {
+                                        echo "<tr>";
+                                        // echo "<td>" . $counter++ . "</td>";
+                                        // echo "<td>SCORM Directory</td>";
+                                        // echo "<td>" . htmlspecialchars($material['scormDir']) . "</td>";
+                                        echo "</tr>";
+                                        echo "<tr>";
+                                        // echo "<td>" . $counter++ . "</td>";
+                                        // echo "<td>Index Path</td>";
+                                        $base_url = "http://localhost/eyebook/"; // Replace with your actual base URL
+                                        $full_url = $base_url . $material['indexPath'];
+                                        
+                                        echo "<td><iframe src='" . $full_url . "' width='600' height='400'></iframe></td>";
+                                        
+                                        echo "</tr>";
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
 
-                        <h4 class="card-title mt-4">Course Control Panel</h4>
-                        <div class="list-group">
-                            <!-- View Students' Progress -->
-                            <a href="view_students_progress.php?course_id=<?php echo $course_id; ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-chart-line"></i> View Students' Progress
-                            </a>
-                            <!-- View and Manage Assessments -->
-                            <a href="view_assessments.php?course_id=<?php echo $course_id; ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-file-alt"></i> View Assessments
-                            </a>
-                            <!-- View and Manage Assignments -->
-                            <a href="view_assignments.php?course_id=<?php echo $course_id; ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-tasks"></i> View Assignments
-                            </a>
-                            <!-- View Virtual Meetings -->
-                            <a href="view_virtual_meetings.php?course_id=<?php echo $course_id; ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-video"></i> View Virtual Meetings
-                            </a>
-                            <!-- View Attendance for Virtual Meetings -->
-                            <a href="view_attendance.php?course_id=<?php echo $course_id; ?>" class="list-group-item list-group-item-action">
-                                <i class="fas fa-check-circle"></i> View Attendance
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
