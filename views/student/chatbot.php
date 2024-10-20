@@ -56,19 +56,22 @@ if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
         }
         .chat-container {
-            height: 300px;
+            height: 400px;
             overflow-y: auto;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         .message {
-            padding: 10px;
+            padding: 12px 15px;
             margin: 10px;
             border-radius: 20px;
             max-width: 80%;
+            font-size: 14px;
+            line-height: 1.4;
         }
         .user-message {
             background-color: #e3f2fd;
@@ -78,19 +81,38 @@ if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         .guru-message {
             background-color: #f1f3f4;
         }
+        .thinking {
+            display: flex;
+            align-items: center;
+            margin: 10px;
+            font-style: italic;
+            color: #666;
+        }
         .loader {
-            display: none;
             border: 3px solid #f3f3f3;
             border-top: 3px solid #3498db;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             animation: spin 1s linear infinite;
-            margin: 10px auto;
+            margin-right: 10px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+        .input-group {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+        .form-control {
+            border: none;
+            padding: 15px 20px;
+        }
+        .btn-primary {
+            border-radius: 0 25px 25px 0;
+            padding: 15px 30px;
         }
     </style>
 </head>
@@ -102,7 +124,6 @@ if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] === 'POST') {
                 <strong>AskGuru:</strong> Welcome! I'm here to help with your educational questions. Feel free to ask about topics like science, history, mathematics, literature, or any other subject you're curious about!
             </div>
         </div>
-        <div class="loader"></div>
         <div class="input-group mb-3">
             <input type="text" id="user-input" class="form-control" placeholder="Ask an educational question...">
             <button class="btn btn-primary" onclick="sendMessage()">Send</button>
@@ -116,10 +137,13 @@ if (php_sapi_name() !== 'cli' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $('#chat-container').append('<div class="message user-message"><strong>You:</strong> ' + userInput + '</div>');
         $('#user-input').val('');
-        $('.loader').show();
+        
+        // Add thinking message with loader
+        $('#chat-container').append('<div class="thinking"><div class="loader"></div>Guru is thinking...</div>');
+        $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
 
         $.post('askguru.php', {user_input: userInput}, function(data) {
-            $('.loader').hide();
+            $('.thinking').remove(); // Remove the thinking message
             var response = JSON.parse(data);
             $('#chat-container').append('<div class="message guru-message"><strong>AskGuru:</strong> ' + response.response + '</div>');
             $('#chat-container').scrollTop($('#chat-container')[0].scrollHeight);
