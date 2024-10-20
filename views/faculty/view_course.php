@@ -68,7 +68,7 @@ $conn->close();
                                         echo "<tr>";
                                         // echo "<td>" . $counter++ . "</td>";
                                         // echo "<td>Index Path</td>";
-                                        $base_url = "http://localhost/eyebook/"; // Replace with your actual base URL
+                                        $base_url = "https://eyebook.phemesoft.com/"; // Replace with your actual base URL
                                         $full_url = $base_url . $material['indexPath'];
                                         
                                         echo "<td><iframe src='" . $full_url . "' width='600' height='400'></iframe></td>";
