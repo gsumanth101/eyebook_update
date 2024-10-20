@@ -21,7 +21,7 @@
         <div class="logo">EyeBook</div>
         <div class="login-dropdown">
           <button class="dropdown-toggle" onclick="toggleDropdown()">
-            Logins
+            Login
           </button>
           <ul class="dropdown-menu">
             <li><a href="views/student/login.php">Student</a></li>
