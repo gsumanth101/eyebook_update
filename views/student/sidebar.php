@@ -124,7 +124,7 @@ $stmt->close();
         
         <script>
         function openChatbot() {
-            window.location.href = 'chatbot.php';
+            window.location.href = 'askguru.php';
         }
         </script>
 
