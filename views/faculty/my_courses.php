@@ -40,7 +40,7 @@ $conn->close();
                                     <p class="card-text"><?php echo htmlspecialchars($course['description']); ?></p>
                                 </div>
                                 <div class="card-body">
-                                    <a href="view_course?id=<?php echo $course['id']; ?>" class="card-link">View Course</a>
+                                    <a href="view_course.php?id=<?php echo $course['id']; ?>" class="card-link">View Course</a>
                                 </div>
                             </div>
                         </div>

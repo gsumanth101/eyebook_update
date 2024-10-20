@@ -60,3 +60,4 @@ $meetings = $result['success'] ? $result['meetings'] : [];
     <p><a href="index.php">Back to Home</a></p>
 </body>
 </html>
+

@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         $password = trim($_POST["password"]);
 
         // Prepare and execute the SQL statement
-        $stmt = $db->prepare("SELECT * FROM faculty WHERE BINARY email = ?");
+        $stmt = $conn->prepare("SELECT * FROM faculty WHERE BINARY email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -53,13 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EyeBook</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="v/public/assets/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/assets/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/public/assets/images/android-chrome-512x512.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/public/assets/images/android-chrome-192x192.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../views\public/assets/styles/core.css">
-    <link rel="stylesheet" type="text/css" href="../views\public/assets/styles/icon-font.min.css">
-    <link rel="stylesheet" type="text/css" href="../views\public/assets/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../../views/public/assets/styles/core.css">
+    <link rel="stylesheet" type="text/css" href="../../views/public/assets/styles/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="../../views/public/assets/styles/style.css">
     <style>
         h5 {
             color: blue;
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 col-lg-7">
-                <img src="../views\public/assets/images/login-page-img.webp" alt="">
+                <img src="../../views/public/assets/images/login-page-img.webp" alt="">
             </div>
             <div class="col-md-6 col-lg-5">
                 <div class="login-box bg-light box-shadow border-radius-12">
